@@ -1,10 +1,11 @@
 class werewolf(creature):
-	attack = 0;
-	health = 200;
+	def _init_():
+		attack = 0;
+		health = 200;
 
 	attack():
 		return random(41);
-	takeDamage(weapon):
+	takeDamage(weapon, playerDamage):
 		if(weapon.name != "chocolateBar" && weapon.name != "sourStraws"):
-			health = health - weapon.damage;
+			health = health - playerDamage;
 		

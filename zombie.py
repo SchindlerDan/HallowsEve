@@ -1,12 +1,13 @@
 class zombie(creature):
-	attack = 10;
-	health = random(51) + 50
+	def _init_():
+		attack = 10;
+		health = random(51) + 50
 
 	attack():
 		return random(attack);
-	takeDamage(weapon):
+	takeDamage(weapon, playerDamage):
 		#thepythonguru.com/python-strings/
 		if(weapon.name == "SourStraws"):
-			health = health - (2 * weapon.damage);
+			health = health - (2 * playerDamage);
 		else:
-			health = health - weapon.damage;
+			health = health - playerDamage;

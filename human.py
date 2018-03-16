@@ -1,6 +1,7 @@
 class human(creature):
-	attack = -1;
-	health = 100;
+	def _init_():
+		attack = -1;
+		health = 100;
 
 
 
