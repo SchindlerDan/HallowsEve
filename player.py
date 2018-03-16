@@ -20,4 +20,8 @@ class player(creature):
 				candy = sourStraw();
 				inventory.add(candy);
 		
-		
+	attack(weapon):
+		return attack * weapon.damage;
+	
+	takeDamage(weapon, damage):
+		health = health - damage;
