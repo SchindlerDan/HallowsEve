@@ -1,4 +1,4 @@
-class house():
+class house(Observable,Observer):
 	population = random(11);
 	monsterMash = []
 	#http://www.dummies.com/programming/python/how-to-create-a-constructor-in-python/

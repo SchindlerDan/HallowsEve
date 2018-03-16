@@ -1,5 +1,5 @@
 class Observable(object):
- 
+	#copied directly from the slides
         def __init__(self):    
                 self.observers = []
  
