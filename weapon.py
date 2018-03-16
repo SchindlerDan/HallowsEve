@@ -1,3 +1,5 @@
+class weapon(Object):
+
 def weapon():
 	name;
 	damage;

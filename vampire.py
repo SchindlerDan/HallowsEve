@@ -1,4 +1,4 @@
-class vampire():
+class vampire(creature):
 	
 
 	def _init():
