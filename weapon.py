@@ -5,5 +5,5 @@ class weapon(object):
 		name;
 		damage;
 		uses;
-	def use():
+	def use(self):
 		uses = uses - 1;
