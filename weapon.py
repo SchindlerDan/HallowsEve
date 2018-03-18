@@ -6,4 +6,4 @@ class weapon(object):
 		damage;
 		uses;
 	def use(self):
-		uses = uses - 1;
+		self.uses = self.uses - 1;
