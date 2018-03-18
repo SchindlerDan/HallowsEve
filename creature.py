@@ -6,3 +6,6 @@ class creature(Observable):
 	def takeDamage(weapon):
 	def attack():
 		return attack;
+
+	def getHealth():
+		return health;

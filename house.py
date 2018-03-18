@@ -1,5 +1,6 @@
 class house(Observable,Observer):
 	population = random(11);
+	humansSaved = 0;
 	monsterMash = []
 	#http://www.dummies.com/programming/python/how-to-create-a-constructor-in-python/
 	def _init_():
@@ -22,4 +23,10 @@ class house(Observable,Observer):
 
 
 
+	def attackMonsters(weapon, damage):
+		for(x in monsterMash):
+			x.attack(weapon, damage);
+			print "monsters need to update to let house know when they die";
 
+		if(humansSaved == population):
+			print "FIXME! House needs to notify neighborhood";
