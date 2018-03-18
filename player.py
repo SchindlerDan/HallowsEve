@@ -34,7 +34,7 @@ class player(creature):
 		
 	def getAttack(self, number):
 		modifier=self.inventory[number].damage;
-		self.inventory[number](use);
+		use(self.inventory[number]);
 		#https://stackoverflow.com/questions/9754729/remove-object-from-a-list-of-objects-in-python
 		if (self.inventory[number].uses==0):
 			del self.inventory[number];
