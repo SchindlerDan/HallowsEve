@@ -24,7 +24,7 @@ class neighborhood(Observer, Observable):
 				self.hauntedHouses = self.hauntedHouses + 1;	
 	def update(self, house):
 		self.hauntedHouses = self.hauntedHouses - 1;
-		updateGame(self, house.getX(), house.getY());
+		self.updateGame(house);
 		if(self.hauntedHouses <= 0):
 			self.updateVictory();
 	def getHouse(self, x, y):

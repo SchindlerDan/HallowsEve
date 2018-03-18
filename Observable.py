@@ -20,9 +20,9 @@ class Observable(object):
 	def updateNeighborhood(self, house):
 		for observer in self.observers:
 			observer.update(house);				
-	def updateGame(self, x, y):
+	def updateGame(self, house):
 		for observer in self.observers:
-			observer.updateSaved(x, y);		
+			observer.updateSaved(house);		
 	def updateHouse(self, creature):
 		for observer in self.observers:
 			observer.update(creature);

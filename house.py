@@ -46,7 +46,8 @@ class house(Observable,Observer):
 				monsterMash.append(monster);
 		self.myX = x;
 		self.myY = y;
-
+		if(self.population == 0):
+			self.updateNeighborhood(self);
 
 
 

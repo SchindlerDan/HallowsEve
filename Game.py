@@ -23,13 +23,19 @@ class game(Observer):
 	clearedHouses = [];
 	gameOn = True;
 	
-	def updateSaved(x, y):
-		coordinateSaved = []
-		coordinateSaved.append(x);
-		coordinateSaved.append(y);
-		self.clearedHouses.append(coordinateSaved);
-		print "we've saved a house at the following coordinates: ",
-		print coordinateSaved;	
+
+	def updateVictory():
+		self.gameOn = False;
+		print "Congratulations on saving your neighborhood!"
+
+
+	def updateSaved(self, house):
+		#coordinateSaved = []
+		#coordinateSaved.append(x);
+		#coordinateSaved.append(y);
+		self.clearedHouses.append(house);
+		#print "we've saved a house at the following coordinates: ",
+		#print coordinateSaved;	
 	def update(self, player):	
 		self.gameOn = False;
 		print "Sorry, your journey is at an end. You have died";
@@ -62,16 +68,23 @@ class game(Observer):
 
 		print "After waking from a sugar crash, you discover that your friends and family have all turned into horrible monsters! Can you survive and return everyone to normal?";
 		print "Houses with monsters remaining will be marked by M, Houses that have been cleared will be marked by X, and the home you are in will be marked with P"
-
-
+		
+		#this loop actually runs the game
 		while(self.gameOn):
-			for x in range(0, rows):
-				for y in range(0, columns):
-					if([x,y] in self.clearedHouses):
-						print "X ",
-					elif(y == playerCoordinateX and x == playerCoordinateY):
+			#this nested loop prints the board
+			for y in range(0, rows):
+				for x in range(0, columns):
+					cleared = False;
+					#playerCoordinates are weird, x is x here but x is y just a few lines down, DO NOT TOUCH PLEASE
+					for z in self.clearedHouses:
+						if(z.getX() == x and z.getY() == y and not (playerCoordinateX == x and playerCoordinateY == y)):
+							print "X ",
+							cleared = True;
+					#Don't touch this please
+					if(x == playerCoordinateX and y == playerCoordinateY):
 						print "P ",
-					else:
+						
+					elif(not cleared):
 						print "M ",
 				print "\n";
 			
