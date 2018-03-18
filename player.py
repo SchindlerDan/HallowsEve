@@ -1,45 +1,55 @@
 from creature import creature
-class player(observable, creature):
+from HersheyKisses import HersheyKisses
+from sourStraw import sourStraw
+from chocolateBars import chocolateBars
+from nerdBombs import nerdBombs
+from Observable import Observable
+import random
+class player(creature):
 	inventory = [];
 	health = 0;
 	attack = 0;
 	
-	def _init_(game):
-		health = random.randrange(0,25) + 100;
-		attack = random.randrange(0,10) + 10;
-		startingWeapon = hersheyKisses();
-		inventory.add(startingWeapon);
-		self.addObserver(game);
+	def __init__(self, game):
+		Observable.__init__(self);
+		self.add_observer(game);
+		self.health = random.randrange(0,25) + 100;
+		self.attack = random.randrange(0,10) + 10;
+		startingWeapon = HersheyKisses();
+		self.inventory.append(startingWeapon);
+		
 		for i in range (0,9):
-			startingGear = random(3);
+			startingGear = random.randint(0, 2);
 			
 			if(startingGear == 0):
 				candy = chocolateBars();
-				inventory.add(candy);
+				self.inventory.append(candy);
 			elif(startingGear == 1):
 				candy = nerdBombs();
 
-				inventory.add(candy);
+				self.inventory.append(candy);
 			else:
 				candy = sourStraw();
-				inventory.add(candy);
+				self.inventory.append(candy);
 		
-	def attack(number):
-		return attack * inventory[number].damage;
+	def getAttack(self, number):
+		return self.attack * self.inventory[number].damage;
 	
-	def takeDamage(damage):
-		health = health - damage;
+	def takeDamage(self, damage):
+		self.health = self.health - damage;
 		#intentional. 0 health means you are on death's doorstep
-		if(health < 0):
+		if(self.health < 0):
 			update(self);	
 
-	def printInventory():
-		for x in inventory:
+	def printInventory(self):
+		count = 1;
+		for x in self.inventory:
+			print count,
 			print x.name;
-			print "\n"
-	def getNumberOfWeapons():
-		return inventory.size();
-	def getWeapon(number):
-		return inventory[number];
-	def getHealth():
-		return health
+			count = count + 1;
+	def getNumberOfWeapons(self):
+		return len(self.inventory);
+	def getWeapon(self, number):
+		return self.inventory[number];
+	def getHealth(self):
+		return self.health

@@ -1,22 +1,25 @@
 from creature import creature
-class ghouls(creature):
-	def _init_():
-		attack = 15;
-		health = random.randrange(0,40) + 40
-	
-
-	def attack():
-		return random.randrange(0,15) + attack;
-	def takeDamage(weapon, playerDamage):
+from Observable import Observable
+import random
+class ghoul(creature, Observable):
+	name = ""
+	health = 0;
+	attack = 0
+	def __init__(self, house):
+		self.attack = 15;
+		self.health = random.randrange(0,40) + 40
+		Observable.__init__(self);
+		self.add_observer(house);
+		self.name = "ghoul"
+	def attacking(self):
+		return random.randrange(0,15) + self.attack;
+	def takeDamage(self, weapon, playerDamage):
 		if(weapon.name == "NerdBombs"):
-			health = health - (playerDamage * 5)
+			self.health = self.health - (playerDamage * 5)
 		else:
-			health = health - playerDamage
-		if(health <= 0):
-			update();
-	def getName():
-		return "ghoul ";
-
+			self.health = self.health - playerDamage
+		if(self.health <= 0):
+			self.update();
 
 
 

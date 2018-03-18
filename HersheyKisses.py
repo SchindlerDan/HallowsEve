@@ -1,5 +1,5 @@
 from weapon import weapon
-class hersheyKisses(weapon):
+class HersheyKisses(weapon):
 	damage = 1;
 	name = "HersheyKisses";
 	uses = 1000;

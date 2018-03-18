@@ -3,14 +3,17 @@ from Observable import Observable
 import random;
 class creature(Observable,object):
 	def _init_(self, house):
+		name = "Default"
 		attack=0;#compiler said to initialize these
 		health=0;
-		self.addObserver(house);
-	def takeDamage(weapon):
+		Observable.__init__(self);
+		self.add_observer(house);
+	def takeDamage(self, weapon):
 		pass
-	def attack():
-		return attack;
+	def attack(self):
+		return self.attack;
 
-	def getHealth():
-		return health;
-
+	def getHealth(self):
+		return self.health;
+	def getName(self):
+		return self.name;

@@ -1,19 +1,26 @@
 from creature import creature
+from Observable import Observable	
+import random
 class zombie(creature):
-	def _init_():
-		attack = 10;
-		health = random.randrange(0,50) + 50
+	name = ""
+	health = 0;
+	attack = 0;
 
-	def attack():
-		return random.randrange(0,attack);
-	def takeDamage(weapon, playerDamage):
+	def __init__(self, house):
+		self.attack = 10;
+		self.health = random.randrange(0,50) + 50
+		Observable.__init__(self);
+		self.add_observer(house);
+		self.name = "zombie"
+	def attacking(self):
+		return random.randrange(0, self.attack);
+	def takeDamage(self, weapon, playerDamage):
 		#thepythonguru.com/python-strings/
 		if(weapon.name == "SourStraws"):
-			health = health - (2 * playerDamage);
+			self.health = self.health - (2 * playerDamage);
 		else:
-			health = health - playerDamage;
+			self.health = self.health - playerDamage;
 
-		if(health <= 0):
-			update();
-	def getName():
-		return "zombie "
+		if(self.health <= 0):
+			self.update();
+	

@@ -1,60 +1,82 @@
 from creature import creature
 from Observer import Observer
 from Observable import Observable
+from ghoul import ghoul
+from vampire import vampire
+from werewolf import werewolf
+from zombie import zombie
 import random
+#https://docs.python.org/2/library/random.html
 class house(Observable,Observer):
-	population = random(11);
+	population = random.randrange(0, 10, 1);
 	humansSaved = 0;
+	
+	
 	#https://developers.google.com/edu/python/lists
-	monsterMash = []
+	
 	myX = 0;
 	myY = 0;
 	#http://www.dummies.com/programming/python/how-to-create-a-constructor-in-python/
-	def _init_(self, neighborhood, x, y):
-		self.addObserver(neighborhood);
-		for i in range (0,population):
-			pickMonster = random(4)
+	#http://www.pythonforbeginners.com/super/working-python-super-function
+	def __init__(self, neighborhood, x, y):
+		Observable.__init__(self);
+		self.population = random.randrange(0, 10, 1);
+		self.monsterMash = [];
+		self.humansSaved = 0;	
+		
+		
+		
+		
+		self.add_observer(neighborhood);
+		for i in range (0, self.population):
+			pickMonster = random.randint(0,3)
+			monsterMash = self.monsterMash
 			if(pickMonster == 0):
 				monster = ghoul(self);
-				monsterMash.add(monster);
+				monsterMash.append(monster);
 			elif(pickMonster == 1):
 				monster = vampire(self);
-				monsterMash.add(monster);
+				monsterMash.append(monster);
 			elif(pickMonster == 2):
 				monster = zombie(self);
-				monsterMash.add(monster);
+				monsterMash.append(monster);
 			else:
 				monster = werewolf(self);
-				monsterMash.add(monster);
+				monsterMash.append(monster);
 		myX = x;
 		myY = y;
 
 
 
 
-	def attackMonsters(weapon, damage):
-		for x in monsterMash:
+	def attackMonsters(self, weapon, damage):
+		for x in self.monsterMash:
 			x.takeDamage(weapon, damage);
 			print "monsters need to update to let house know when they die";
 
-		if(humansSaved == population):
+		if(self.humansSaved == self.population):
 			updateNeighborhood();
 			print "FIXME! House needs to notify neighborhood";
-	def update(monster):
-		humansSaved = humansSaved + 1;
-		monsterMash[monsterMash.index(monster)] = human();
-	def monstersAttack():
+	def update(self, monster):
+		self.humansSaved = self.humansSaved + 1;
+		self.monsterMash[self.monsterMash.index(monster)] = human();
+	def monstersAttack(self):
 		totalDamage = 0;
-		for x in monsterMash:
-			totalDamage = totalDamage + x.attack();
+		for x in self.monsterMash:
+			totalDamage = totalDamage + x.attacking();
+			
 		return totalDamage;
-	def getX():
-		return myX;
-	def getY():
-		return myY;
-	def reportStatus():
-		for x in monsterMash:
-			print x.getName
-			print ": "
-			print  x.getHealth	
-			print "\n"
+	def getX(self):
+		return self.myX;
+	def getY(self):
+		return self.myY;
+	def reportStatus(self):
+		print "There are ",
+		print len(self.monsterMash),
+		print " Monsters in this house"
+		#https://stackoverflow.com/questions/493386/how-to-print-without-newline-or-space
+		for x in self.monsterMash:
+			print x.getName(),
+			print ": ",
+			print  x.getHealth()	
+	
