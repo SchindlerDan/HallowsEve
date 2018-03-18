@@ -1,3 +1,4 @@
+from creature import creature
 class human(creature):
 	def _init_():
 		attack = -1;
@@ -5,4 +6,10 @@ class human(creature):
 
 
 
-	takeDamage(weapon):
+	def takeDamage(weapon):
+		pass
+
+
+
+	def getName():
+		return "Saved Human" 

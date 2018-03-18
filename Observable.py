@@ -13,6 +13,13 @@ class Observable(object):
  
         def remove_all_observers(self):
                 self.observers = []
-		def update(self):
-                for observer in self.observers:
-                        observer.update()
+				
+	def update(self):
+		for observer in self.observers:
+			observer.update()
+	def updateNeighborhood(self):
+		for observer in self.observers:
+			observer.update();				
+	def updateGame(self):
+		for observer in self.observers:
+			observer.update();		
