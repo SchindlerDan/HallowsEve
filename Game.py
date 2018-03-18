@@ -1,3 +1,4 @@
+from Observer import Observer
 class game(Observer):
 	clearedHouses = [];
 	gameOn = True;
@@ -89,7 +90,7 @@ class game(Observer):
 			print "Which weapon shall you use? Use the weapon's number in your inventory that you'd like to use\n"
 			player.printInventory();
 			while(weaponPick == 0):
-			weaponPick = input("I'll choose weapon number...\n");
+				weaponPick = input("I'll choose weapon number...\n");
 			
 			if(weaponPick > player.getNumberOfWeapons()):
 				weaponPick = 0;
@@ -97,7 +98,7 @@ class game(Observer):
 
 			neighborhood.getHouse(playerCoordinateX, playerCoordinateY).attackMonsters(player.getWeapon(weaponPick), player.getAttack());
 			
-			player.takeDamage(neighborhood.getHouse(playerCoordinateX, playerCoordinateY).monstersAttack();	
+			player.takeDamage(neighborhood.getHouse(playerCoordinateX, playerCoordinateY).monstersAttack())
 			
 			
 			if(clearedHouses.size() == rows * columns):
