@@ -33,7 +33,12 @@ class player(creature):
 				self.inventory.append(candy);
 		
 	def getAttack(self, number):
-		return self.attack * self.inventory[number].damage;
+		modifier=self.inventory[number].damage;
+		self.inventory[number](use);
+		#https://stackoverflow.com/questions/9754729/remove-object-from-a-list-of-objects-in-python
+		if (self.inventory[number].uses==0):
+			del self.inventory[number];
+		return self.attack * modifier;
 	
 	def takeDamage(self, damage):
 		self.health = self.health - damage;
