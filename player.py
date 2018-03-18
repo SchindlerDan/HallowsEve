@@ -1,4 +1,5 @@
 from creature import creature
+from weapon import weapon
 from HersheyKisses import HersheyKisses
 from sourStraw import sourStraw
 from chocolateBars import chocolateBars
