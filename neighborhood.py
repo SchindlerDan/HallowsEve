@@ -8,7 +8,7 @@ class neighborhood(Observer, Observable):
 	r = 1;
 	c = 1;
 	def __init__(self, game, rows, columns):
-		hauntedHouses = rows * columns;
+		self.hauntedHouses = rows * columns;
 		#houses = [[house() for x in range(columns)] for y in range(rows)];
 		#This nested for loop will fill the board with new houses in a grid.
 		Observable.__init__(self);
@@ -21,10 +21,11 @@ class neighborhood(Observer, Observable):
 				newHome = house(self, x, y);
 				newHome.add_observer(self);
 				self.houses[x].append(newHome);
-	
-	def update(house):
-		hauntedHouses = hauntedHouses - 1;
-		if(hauntedHouses <= 0):
-			updateGame(self, house.getX(), house.getY());
+				self.hauntedHouses = self.hauntedHouses + 1;	
+	def update(self, house):
+		self.hauntedHouses = self.hauntedHouses - 1;
+		updateGame(self, house.getX(), house.getY());
+		if(self.hauntedHouses <= 0):
+			self.updateVictory();
 	def getHouse(self, x, y):
 		return self.houses[x][y];

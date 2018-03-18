@@ -14,12 +14,19 @@ class Observable(object):
         def remove_all_observers(self):
                 self.observers = []
 				
-	def update(self):
+	def update(self, player):
 		for observer in self.observers:
-			observer.update()
-	def updateNeighborhood(self):
+			observer.update(player)
+	def updateNeighborhood(self, house):
 		for observer in self.observers:
-			observer.update();				
-	def updateGame(self):
+			observer.update(house);				
+	def updateGame(self, x, y):
 		for observer in self.observers:
-			observer.update();		
+			observer.updateSaved(x, y);		
+	def updateHouse(self, creature):
+		for observer in self.observers:
+			observer.update(creature);
+
+	def updateVictory(self):
+		for observer in self.observers:
+			observer.updateWin();

@@ -19,7 +19,7 @@ class ghoul(creature, Observable):
 		else:
 			self.health = self.health - playerDamage
 		if(self.health <= 0):
-			self.update();
+			self.updateHouse(self);
 
 
 

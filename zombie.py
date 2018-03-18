@@ -22,5 +22,5 @@ class zombie(creature):
 			self.health = self.health - playerDamage;
 
 		if(self.health <= 0):
-			self.update();
+			self.updateHouse(self);
 	

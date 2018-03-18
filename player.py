@@ -39,7 +39,7 @@ class player(creature):
 		self.health = self.health - damage;
 		#intentional. 0 health means you are on death's doorstep
 		if(self.health < 0):
-			update(self);	
+			self.update(self);	
 
 	def printInventory(self):
 		count = 1;

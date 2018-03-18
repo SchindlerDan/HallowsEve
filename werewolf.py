@@ -17,4 +17,4 @@ class werewolf(creature, Observable):
 		if(weapon.name != "chocolateBar" and weapon.name != "sourStraws"):
 			self.health = self.health - playerDamage;
 		if(self.health <= 0):
-			update();
+			self.updateHouse(self);

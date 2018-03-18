@@ -5,6 +5,7 @@ from ghoul import ghoul
 from vampire import vampire
 from werewolf import werewolf
 from zombie import zombie
+from human import human
 import random
 #https://docs.python.org/2/library/random.html
 class house(Observable,Observer):
@@ -43,8 +44,8 @@ class house(Observable,Observer):
 			else:
 				monster = werewolf(self);
 				monsterMash.append(monster);
-		myX = x;
-		myY = y;
+		self.myX = x;
+		self.myY = y;
 
 
 
@@ -52,14 +53,20 @@ class house(Observable,Observer):
 	def attackMonsters(self, weapon, damage):
 		for x in self.monsterMash:
 			x.takeDamage(weapon, damage);
-			print "monsters need to update to let house know when they die";
+			
 
-		if(self.humansSaved == self.population):
-			updateNeighborhood();
-			print "FIXME! House needs to notify neighborhood";
+#		if(self.humansSaved == self.population):
+#			self.updateNeighborhood();
+			
 	def update(self, monster):
 		self.humansSaved = self.humansSaved + 1;
 		self.monsterMash[self.monsterMash.index(monster)] = human();
+		if(self.humansSaved == self.population):
+			self.updateNeighborhood(self);
+
+
+
+
 	def monstersAttack(self):
 		totalDamage = 0;
 		for x in self.monsterMash:

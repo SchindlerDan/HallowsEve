@@ -17,4 +17,4 @@ class vampire(creature, Observable):
 		if(weapon.name != "ChocolateBar"):
 			self.health = self.health - playerDamage;
 		if(self.health <= 0):
-			self.update();
+			self.updateHouse(self);

@@ -23,11 +23,15 @@ class game(Observer):
 	clearedHouses = [];
 	gameOn = True;
 	
-	def updateGame(neighborhood, x, y):
-		clearedHouses.append([x,y]);
-		
-	def update(player):	
-		gameOn = False;
+	def updateSaved(x, y):
+		coordinateSaved = []
+		coordinateSaved.append(x);
+		coordinateSaved.append(y);
+		self.clearedHouses.append(coordinateSaved);
+		print "we've saved a house at the following coordinates: ",
+		print coordinateSaved;	
+	def update(self, player):	
+		self.gameOn = False;
 		print "Sorry, your journey is at an end. You have died";
 	def main(self):
 		#http://www.pythonforbeginners.com/basics/getting-user-input-from-the-keyboard
@@ -47,12 +51,12 @@ class game(Observer):
 
 
 		myPlayer = player(self);
-		playerCoordinateX = input("How many houses to the right is your home?");
-		while(playerCoordinateX > columns):
+		playerCoordinateX = input("How many houses to the right is your home? ");
+		while(playerCoordinateX > columns or playerCoordinateX < 0):
 			playerCoordinateX = input("Oops, that was too far! Try again please. ");
-		playerCoordinateY = input("How many houses down is your home?");
-		while(playerCoordinateY > rows):
-			playerCoordinateY = input("Oops, that was too far! Try again please.");
+		playerCoordinateY = input("How many houses down is your home? ");
+		while(playerCoordinateY > rows or playerCoordinateY < 0):
+			playerCoordinateY = input("Oops, that was too far! Try again please. ");
 
 
 
@@ -65,7 +69,7 @@ class game(Observer):
 				for y in range(0, columns):
 					if([x,y] in self.clearedHouses):
 						print "X ",
-					elif(x == playerCoordinateX and y == playerCoordinateY):
+					elif(y == playerCoordinateX and x == playerCoordinateY):
 						print "P ",
 					else:
 						print "M ",
@@ -76,7 +80,7 @@ class game(Observer):
 
 			print "\n your health: ",
 			print myPlayer.getHealth();
-			movement = raw_input( "Would you like to stay in this house, or move to a different home? W to go north, A to go west, S to go south, D to go east, or any other input to stay here.");
+			movement = raw_input( "Would you like to stay in this house, or move to a different home? W to go north, A to go west, S to go south, D to go east, or any other input to stay here and fight.");
 			
 			if(movement == "W" or movement == "w"):
 				if(playerCoordinateY == 0):
@@ -108,19 +112,19 @@ class game(Observer):
 			else:
 				print "You decided to stay in this house\n"
 		
-			weaponPick = -1;
-			print "Which weapon shall you use? Use the weapon's number in your inventory that you'd like to use"
-			myPlayer.printInventory();
-			while(weaponPick < 0):
-				weaponPick = input("I'll choose weapon number...") - 1;
-			
-			if(weaponPick > myPlayer.getNumberOfWeapons()):
 				weaponPick = -1;
-				print "oops, that weapon doesn't exist! Try again.";
-
-			myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).attackMonsters(myPlayer.getWeapon(weaponPick), myPlayer.getAttack(weaponPick));
-			
-			myPlayer.takeDamage(myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).monstersAttack())
+				print "Which weapon shall you use? Use the weapon's number in your inventory that you'd like to use"
+				myPlayer.printInventory();
+				while(weaponPick < 0):
+					weaponPick = input("I'll choose weapon number...") - 1;
+				
+				if(weaponPick > myPlayer.getNumberOfWeapons()):
+					weaponPick = -1;
+					print "oops, that weapon doesn't exist! Try again.";
+	
+				myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).attackMonsters(myPlayer.getWeapon(weaponPick), myPlayer.getAttack(weaponPick));
+				
+				myPlayer.takeDamage(myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).monstersAttack())
 			
 			
 			if(len(self.clearedHouses) == rows * columns):
