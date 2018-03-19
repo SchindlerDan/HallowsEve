@@ -13,8 +13,8 @@ class werewolf(creature, Observable):
 		self.name = "werewolf"
 	def attacking(self):
 		return random.randrange(0,40);
-	def takeDamage(self, weapon, playerDamage):
-		if(weapon.name != "chocolateBar" and weapon.name != "sourStraws"):
-			self.health = self.health - playerDamage;
+	def takedamage(self, weapon, playerdamage):
+		if(weapon.name != "Chocolate Bar" and weapon.name != "Sour Straws"):
+			self.health = self.health - playerdamage;
 		if(self.health <= 0):
-			self.updateHouse(self);
+			self.updatehouse(self);

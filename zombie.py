@@ -16,7 +16,7 @@ class zombie(creature):
 		return random.randrange(0, self.attack);
 	def takeDamage(self, weapon, playerDamage):
 		#thepythonguru.com/python-strings/
-		if(weapon.name == "SourStraws"):
+		if(weapon.name == "Sour Straw"):
 			self.health = self.health - (2 * playerDamage);
 		else:
 			self.health = self.health - playerDamage;

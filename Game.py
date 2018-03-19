@@ -124,22 +124,27 @@ class game(Observer):
 				
 			else:
 				print "You decided to stay in this house\n"
-		
+			
 				weaponPick = -1;
 				print "Which weapon shall you use? Use the weapon's number in your inventory that you'd like to use"
 				myPlayer.printInventory();
-				while(weaponPick < 0):
-					weaponPick = input("I'll choose weapon number...") - 1;
+				#http://www.pythonforbeginners.com/error-handling/python-try-and-except
+				try:	
+					while(weaponPick < 0):
+						
+							weaponPick = input("I'll choose weapon number...") - 1;
+					
+					if(weaponPick > myPlayer.getNumberOfWeapons()):
+						weaponPick = -1;
+						print "oops, that weapon doesn't exist! Try again.";
 				
-				if(weaponPick > myPlayer.getNumberOfWeapons()):
-					weaponPick = -1;
-					print "oops, that weapon doesn't exist! Try again.";
-	
-				myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).attackMonsters(myPlayer.getWeapon(weaponPick), myPlayer.getAttack(weaponPick));
+					myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).attackMonsters(myPlayer.getWeapon(weaponPick), myPlayer.getAttack(weaponPick));
 				
-				myPlayer.takeDamage(myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).monstersAttack())
+					myPlayer.takeDamage(myNeighborhood.getHouse(playerCoordinateX, playerCoordinateY).monstersAttack())
+				except:
 			
-			
+				
+					print "No weapon chosen, skipping turn."
 			if(len(self.clearedHouses) == rows * columns):
 				print "With one final sugar rush, you manage to defeat your final foe. VICTORY!"
 				gameOn = False;

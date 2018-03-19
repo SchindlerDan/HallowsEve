@@ -14,7 +14,7 @@ class vampire(creature, Observable):
 	def attacking(self):
 		return random.randrange(0,10) + self.attack;
 	def takeDamage(self, weapon, playerDamage):
-		if(weapon.name != "ChocolateBar"):
+		if(weapon.name != "Chocolate Bar"):
 			self.health = self.health - playerDamage;
 		if(self.health <= 0):
 			self.updateHouse(self);

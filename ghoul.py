@@ -14,7 +14,7 @@ class ghoul(creature, Observable):
 	def attacking(self):
 		return random.randrange(0,15) + self.attack;
 	def takeDamage(self, weapon, playerDamage):
-		if(weapon.name == "NerdBombs"):
+		if(weapon.name == "NerdBomb"):
 			self.health = self.health - (playerDamage * 5)
 		else:
 			self.health = self.health - playerDamage
